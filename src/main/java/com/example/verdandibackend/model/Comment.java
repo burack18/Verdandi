@@ -8,19 +8,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Event extends DbModel {
+public class Comment extends DbModel {
 
-    @Column(name = "content")
-    private String content;
 
-    @Column(name = "create_time")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "create_time")
     private LocalDateTime createTime;
 
     @Column(name = "like_count")
@@ -30,9 +27,8 @@ public class Event extends DbModel {
     private Long dislikeCount;
 
     @ManyToOne
-    private ApplicationUser createrUser;
+    @JoinColumn(name = "event_id")
+    private Event event;
 
-    @OneToMany(mappedBy ="event")
-    private List<Comment> comments;
 
 }

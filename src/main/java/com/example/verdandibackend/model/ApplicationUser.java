@@ -1,5 +1,6 @@
 package com.example.verdandibackend.model;
 
+import com.example.verdandibackend.model.basemodel.DbModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ApplicationUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Integer userId;
+public class ApplicationUser extends DbModel {
 
     @Column(name = "first_name")
     private String firstName;
