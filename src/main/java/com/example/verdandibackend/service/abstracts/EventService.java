@@ -1,5 +1,6 @@
 package com.example.verdandibackend.service.abstracts;
 
+import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.model.Comment;
 import com.example.verdandibackend.model.Event;
 
@@ -10,5 +11,8 @@ public interface EventService {
     Event add(Event event);
     Event getEventById(Integer id);
 
-    void addComment(Integer id, Comment comment);
+    void addComment(Integer id, CommentDto commentDto);
+
+
+    Event addLikeToEvent(Integer id);
 }
