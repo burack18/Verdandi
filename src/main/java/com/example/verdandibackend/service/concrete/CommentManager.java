@@ -35,10 +35,9 @@ public class CommentManager implements CommentService {
     @Override
     public CommentDto addLikeToComment(Integer commentid) {
         Comment comment = getById(commentid);
-        comment.setLikeCount(comment.getLikeCount()+1);
+        Long likeCount = comment.getLikeCount();
+        comment.setLikeCount((likeCount==null?0:likeCount)+1);
         Comment savedComment = repository.save(comment);
         return mapper.convertToDto(savedComment);
     }
-
-
 }

@@ -11,8 +11,10 @@ public interface EventService {
     Event add(Event event);
     Event getEventById(Integer id);
 
-    void addComment(Integer id, CommentDto commentDto);
+    Comment addComment(Integer id, CommentDto commentDto);
 
 
     Event addLikeToEvent(Integer id);
+
+    void deleteById(Integer id);
 }

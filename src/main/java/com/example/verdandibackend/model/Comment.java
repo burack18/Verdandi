@@ -29,6 +29,8 @@ public class Comment extends DbModel {
     @Column(name = "dislike_count")
     private Long dislikeCount;
 
+
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "event_id")

@@ -4,6 +4,7 @@ import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.dao.EventRepository;
 import com.example.verdandibackend.model.Comment;
 import com.example.verdandibackend.model.Event;
+import com.example.verdandibackend.service.abstracts.CommentService;
 import com.example.verdandibackend.service.abstracts.EventService;
 import com.example.verdandibackend.utilities.mapper.CommentMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class EventManager implements EventService {
 
     private final EventRepository repository;
     private final CommentMapper mapper;
+    private final CommentService commentService;
 
     @Override
     public List<Event> getAll() {
@@ -36,18 +38,27 @@ public class EventManager implements EventService {
     }
 
     @Override
-    public void addComment(Integer id, CommentDto commentDto) {
+    public Comment addComment(Integer id, CommentDto commentDto) {
         Event event = getEventById(id);
         Comment comment = mapper.convertToModel(commentDto);
-        event.getComments().add(comment);
-        repository.save(event);
+        comment.setCreateTime(LocalDateTime.now());
+        comment.setEvent(event);
+        Comment savedComment = commentService.add(comment);
+        return savedComment;
     }
 
     @Override
     public Event addLikeToEvent(Integer id) {
         Event event = getEventById(id);
-        event.setLikeCount(event.getLikeCount() + 1);
+        Long likeCount = event.getLikeCount();
+        event.setLikeCount((likeCount==null?0:likeCount) + 1);
         Event savedEvent = repository.save(event);
         return savedEvent;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        Event eventById = getEventById(id);
+        repository.deleteById(id);
     }
 }

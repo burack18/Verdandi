@@ -34,17 +34,24 @@ public class EventController {
     public ResponseEntity getEventById(@PathVariable Integer id){
         return ResponseEntity.ok(service.getEventById(id));
     }
-    @GetMapping("/{id}/like")
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteEvent(@PathVariable Integer id){
+        service.deleteById(id);
+        return ResponseEntity.ok("successfull");
+    }
+
+    @PutMapping("/{id}/like")
     public ResponseEntity addLikeToEvent(@PathVariable Integer id){
         return ResponseEntity.ok(service.addLikeToEvent(id));
     }
 
     @PostMapping("/{id}/comments")
     public ResponseEntity addCommentToEvent(@PathVariable Integer id, @RequestBody CommentDto commentDto){
-        service.addComment(id,commentDto);
-        return ResponseEntity.ok("successfull");
+
+        return ResponseEntity.ok(service.addComment(id,commentDto));
     }
-    @PostMapping("/{id}/comments/{commentid}/like")
+    @PutMapping("/{id}/comments/{commentid}/like")
     public ResponseEntity addLike(@PathVariable Integer commentid){
         commentService.addLikeToComment(commentid);
         return ResponseEntity.ok("successfull");
