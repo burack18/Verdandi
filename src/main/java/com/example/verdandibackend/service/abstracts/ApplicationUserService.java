@@ -11,5 +11,5 @@ public interface ApplicationUserService {
     ApplicationUser add(RegisterUserDto user) throws IOException;
     UserLoginResponse getById(Integer id);
 
-    void login(LoginRequest request);
+    UserLoginResponse login(LoginRequest request);
 }

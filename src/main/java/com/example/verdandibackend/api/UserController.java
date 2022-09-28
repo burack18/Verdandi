@@ -24,8 +24,8 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity register(@RequestBody LoginRequest request){
-        service.login(request);
-        return ResponseEntity.ok().body("successfull");
+
+        return ResponseEntity.ok().body(service.login(request));
     }
     @GetMapping("/{id}")
     public ResponseEntity register(@PathVariable Integer id) {

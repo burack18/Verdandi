@@ -9,7 +9,7 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginResponse {
-
+    private String token;
     private String firstName;
     private String lastName;
     private String email;

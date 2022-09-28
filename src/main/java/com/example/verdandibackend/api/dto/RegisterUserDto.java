@@ -12,5 +12,5 @@ public class RegisterUserDto {
     private String birthDate;
     private Long userScore;
     private String password;
-    private MultipartFile foto;
+    private MultipartFile profileFoto;
 }
