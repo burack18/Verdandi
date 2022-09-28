@@ -1,5 +1,6 @@
 package com.example.verdandibackend.api;
 
+import com.example.verdandibackend.api.dto.LoginRequest;
 import com.example.verdandibackend.api.dto.RegisterUserDto;
 import com.example.verdandibackend.service.abstracts.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,12 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity register(@ModelAttribute RegisterUserDto user) throws IOException {
         return ResponseEntity.ok().body(service.add(user));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity register(@RequestBody LoginRequest request){
+        service.login(request);
+        return ResponseEntity.ok().body("successfull");
     }
     @GetMapping("/{id}")
     public ResponseEntity register(@PathVariable Integer id) {
