@@ -41,7 +41,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 //  .and().authorizeRequests().antMatchers("/**").permitAll()
                 .and().authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .and().authorizeRequests().antMatchers("/api/parkingslots").permitAll()
                 .and().authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);

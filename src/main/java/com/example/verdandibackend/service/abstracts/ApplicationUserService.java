@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public interface ApplicationUserService {
     ApplicationUser add(RegisterUserDto user) throws IOException;
-    UserLoginResponse getById(Integer id);
-
+    ApplicationUser getById(Integer id);
     UserLoginResponse login(LoginRequest request);
 }

@@ -50,18 +50,9 @@ public class ApplicationUserManager implements ApplicationUserService {
     }
 
     @Override
-    public UserLoginResponse getById(Integer id) {
-        Document byUserId = documentService.getByUserId(id);
+    public ApplicationUser getById(Integer id) {
         ApplicationUser applicationUser = repository.findById(id).orElseThrow(() -> new RuntimeException());
-
-//        UserLoginResponse response=new UserLoginResponse(applicationUser.getFirstName(),
-//                applicationUser.getLastName(),
-//                applicationUser.getEmail(),
-//                applicationUser.getPhoneNumber(),
-//                applicationUser.getBirthDate(),
-//                applicationUser.getUserScore(),
-//                byUserId.getProfileFoto());
-        return new UserLoginResponse();
+        return  applicationUser;
     }
 
     @Override
