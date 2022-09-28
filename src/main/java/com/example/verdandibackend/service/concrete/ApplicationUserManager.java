@@ -1,5 +1,6 @@
 package com.example.verdandibackend.service.concrete;
 
+import com.example.verdandibackend.api.dto.LoginRequest;
 import com.example.verdandibackend.api.dto.RegisterUserDto;
 import com.example.verdandibackend.api.dto.UserLoginResponse;
 import com.example.verdandibackend.dao.ApplicationUserRepository;
@@ -47,5 +48,10 @@ public class ApplicationUserManager implements ApplicationUserService {
                 applicationUser.getUserScore(),
                 byUserId.getProfileFoto());
         return response;
+    }
+
+    @Override
+    public void login(LoginRequest request) {
+
     }
 }

@@ -1,11 +1,14 @@
 package com.example.verdandibackend.model;
 
 import com.example.verdandibackend.model.basemodel.DbModel;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @AllArgsConstructor
@@ -31,6 +34,11 @@ public class ApplicationUser extends DbModel {
     @Column(name = "user_score")
     private Long userScore;
 
+    @NotNull
+    @Column(name = "password")
+    private String password;
 
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles=new ArrayList();
 }
