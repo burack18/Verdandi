@@ -3,6 +3,7 @@ package com.example.verdandibackend.service.abstracts;
 import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.model.Comment;
 import com.example.verdandibackend.model.Event;
+import com.example.verdandibackend.model.enums.ReactionType;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface EventService {
     Event addLikeToEvent(Integer id);
 
     void deleteById(Integer id);
+
+    Integer getCountOfReaction(Integer id, ReactionType type);
 }

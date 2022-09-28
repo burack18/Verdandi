@@ -23,13 +23,6 @@ public class Comment extends DbModel {
     @Column(name = "context")
     private String context;
 
-    @Column(name = "like_count")
-    private Long likeCount;
-
-    @Column(name = "dislike_count")
-    private Long dislikeCount;
-
-
 
     @JsonIgnore
     @ManyToOne

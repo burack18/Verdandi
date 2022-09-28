@@ -4,8 +4,10 @@ import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.dao.EventRepository;
 import com.example.verdandibackend.model.Comment;
 import com.example.verdandibackend.model.Event;
+import com.example.verdandibackend.model.enums.ReactionType;
 import com.example.verdandibackend.service.abstracts.CommentService;
 import com.example.verdandibackend.service.abstracts.EventService;
+import com.example.verdandibackend.service.abstracts.ReactionService;
 import com.example.verdandibackend.utilities.mapper.CommentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class EventManager implements EventService {
     private final EventRepository repository;
     private final CommentMapper mapper;
     private final CommentService commentService;
+    private final ReactionService reactionService;
 
     @Override
     public List<Event> getAll() {
@@ -50,8 +53,8 @@ public class EventManager implements EventService {
     @Override
     public Event addLikeToEvent(Integer id) {
         Event event = getEventById(id);
-        Long likeCount = event.getLikeCount();
-        event.setLikeCount((likeCount==null?0:likeCount) + 1);
+//        Long likeCount = event.getLikeCount();
+//        event.setLikeCount((likeCount==null?0:likeCount) + 1);
         Event savedEvent = repository.save(event);
         return savedEvent;
     }
@@ -60,5 +63,10 @@ public class EventManager implements EventService {
     public void deleteById(Integer id) {
         Event eventById = getEventById(id);
         repository.deleteById(id);
+    }
+
+    @Override
+    public Integer getCountOfReaction(Integer id, ReactionType type) {
+        return reactionService.getAllByEvent_IdAndReactionType(id,type);
     }
 }

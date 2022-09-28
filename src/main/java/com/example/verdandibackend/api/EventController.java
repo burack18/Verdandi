@@ -3,6 +3,7 @@ package com.example.verdandibackend.api;
 import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.model.Comment;
 import com.example.verdandibackend.model.Event;
+import com.example.verdandibackend.model.enums.ReactionType;
 import com.example.verdandibackend.service.abstracts.CommentService;
 import com.example.verdandibackend.service.abstracts.EventService;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,11 @@ public class EventController {
     public ResponseEntity addCommentToEvent(@PathVariable Integer id, @RequestBody CommentDto commentDto){
 
         return ResponseEntity.ok(service.addComment(id,commentDto));
+    }
+
+    @GetMapping("/{id}/reactions")
+    public ResponseEntity getReactions(@PathVariable Integer id, @RequestParam ReactionType type){
+        return ResponseEntity.ok(service.getCountOfReaction(id,type));
     }
     @PutMapping("/{id}/comments/{commentid}/like")
     public ResponseEntity addLike(@PathVariable Integer commentid){

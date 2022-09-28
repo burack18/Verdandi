@@ -31,4 +31,6 @@ public class ApplicationUser extends DbModel {
     @Column(name = "user_score")
     private Long userScore;
 
+
+
 }
