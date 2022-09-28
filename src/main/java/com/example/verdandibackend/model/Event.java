@@ -26,7 +26,7 @@ public class Event extends DbModel {
     @ManyToOne
     private ApplicationUser createrUser;
 
-    @OneToMany(mappedBy ="event")
+    @OneToMany(mappedBy ="event",cascade = CascadeType.ALL)
     private List<Comment> comments;
 
 }

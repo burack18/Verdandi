@@ -1,5 +1,6 @@
 package com.example.verdandibackend;
 
+import com.example.verdandibackend.utilities.mapper.ApplicationUserMapper;
 import com.example.verdandibackend.utilities.mapper.CommentMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -13,8 +14,5 @@ public class VerdandiBackendApplication {
         SpringApplication.run(VerdandiBackendApplication.class, args);
     }
 
-    @Bean
-    public CommentMapper getCMapper(){
-        return new CommentMapper(new ModelMapper());
-    };
+
 }

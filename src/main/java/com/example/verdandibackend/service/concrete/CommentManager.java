@@ -3,9 +3,13 @@ package com.example.verdandibackend.service.concrete;
 import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.dao.CommentRepository;
 import com.example.verdandibackend.model.Comment;
+import com.example.verdandibackend.model.Reaction;
+import com.example.verdandibackend.model.enums.ReactionType;
 import com.example.verdandibackend.service.abstracts.CommentService;
+import com.example.verdandibackend.service.abstracts.ReactionService;
 import com.example.verdandibackend.utilities.mapper.CommentMapper;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +19,7 @@ public class CommentManager implements CommentService {
 
     private final CommentRepository repository;
     private final CommentMapper mapper;
+    private final ReactionService reactionService;
 
 
     @Override
@@ -33,11 +38,9 @@ public class CommentManager implements CommentService {
     }
 
     @Override
-    public CommentDto addLikeToComment(Integer commentid) {
+    public void addReactionToComment(Integer commentid, ReactionType type) {
         Comment comment = getById(commentid);
-//        Long likeCount = comment.getLikeCount();
-//        comment.setLikeCount((likeCount==null?0:likeCount)+1);
-        Comment savedComment = repository.save(comment);
-        return mapper.convertToDto(savedComment);
+        Reaction reaction=new Reaction(comment,type);
+        reactionService.add(reaction);
     }
 }

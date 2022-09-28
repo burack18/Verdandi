@@ -4,6 +4,7 @@ import com.example.verdandibackend.api.dto.CommentDto;
 import com.example.verdandibackend.dao.EventRepository;
 import com.example.verdandibackend.model.Comment;
 import com.example.verdandibackend.model.Event;
+import com.example.verdandibackend.model.Reaction;
 import com.example.verdandibackend.model.enums.ReactionType;
 import com.example.verdandibackend.service.abstracts.CommentService;
 import com.example.verdandibackend.service.abstracts.EventService;
@@ -51,12 +52,10 @@ public class EventManager implements EventService {
     }
 
     @Override
-    public Event addLikeToEvent(Integer id) {
+    public void addLikeToEvent(Integer id,ReactionType type) {
         Event event = getEventById(id);
-//        Long likeCount = event.getLikeCount();
-//        event.setLikeCount((likeCount==null?0:likeCount) + 1);
-        Event savedEvent = repository.save(event);
-        return savedEvent;
+        Reaction reaction=new Reaction(event,type);
+        reactionService.add(reaction);
     }
 
     @Override

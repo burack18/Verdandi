@@ -19,6 +19,11 @@ public class ReactionManager implements ReactionService {
     }
 
     @Override
+    public Reaction add(Reaction reaction) {
+        return repository.save(reaction);
+    }
+
+    @Override
     public Integer getAllByEvent_IdAndReactionType(Integer id, ReactionType reactionType) {
         return repository.getAllByEvent_IdAndReactionType(id,reactionType);
     }

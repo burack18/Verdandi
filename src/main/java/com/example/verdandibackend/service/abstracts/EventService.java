@@ -15,7 +15,7 @@ public interface EventService {
     Comment addComment(Integer id, CommentDto commentDto);
 
 
-    Event addLikeToEvent(Integer id);
+    void addLikeToEvent(Integer id,ReactionType type);
 
     void deleteById(Integer id);
 

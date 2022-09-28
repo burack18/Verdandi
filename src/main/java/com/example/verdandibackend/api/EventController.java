@@ -42,14 +42,14 @@ public class EventController {
         return ResponseEntity.ok("successfull");
     }
 
-    @PutMapping("/{id}/like")
-    public ResponseEntity addLikeToEvent(@PathVariable Integer id){
-        return ResponseEntity.ok(service.addLikeToEvent(id));
+    @PutMapping("/{id}/reactions")
+    public ResponseEntity addLikeToEvent(@PathVariable Integer id,@RequestBody ReactionType type){
+        service.addLikeToEvent(id,type);
+        return ResponseEntity.ok("successfull");
     }
 
     @PostMapping("/{id}/comments")
     public ResponseEntity addCommentToEvent(@PathVariable Integer id, @RequestBody CommentDto commentDto){
-
         return ResponseEntity.ok(service.addComment(id,commentDto));
     }
 
@@ -57,10 +57,9 @@ public class EventController {
     public ResponseEntity getReactions(@PathVariable Integer id, @RequestParam ReactionType type){
         return ResponseEntity.ok(service.getCountOfReaction(id,type));
     }
-    @PutMapping("/{id}/comments/{commentid}/like")
-    public ResponseEntity addLike(@PathVariable Integer commentid){
-        commentService.addLikeToComment(commentid);
+    @PutMapping("/{id}/comments/{commentid}/reactions")
+    public ResponseEntity addLike(@PathVariable Integer commentid,@RequestBody ReactionType type){
+        commentService.addReactionToComment(commentid,type);
         return ResponseEntity.ok("successfull");
     }
-
 }
